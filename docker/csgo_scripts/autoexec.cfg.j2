@@ -1,0 +1,22 @@
+// This file is executed before the first map starts
+
+// https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive/Dedicated_Servers#Linux_Scripts
+
+// Destination: /data/steam/csgo_app/csgo/cfg/autoexec.cfg
+
+
+log on //This is set to turn on logging! Don't put this in your server.cfg
+hostname "{{server_name}}"
+sv_tags "{{server_name}}"
+{% if steam_server_token != 'EMPTY' %}
+// token: https://steamcommunity.com/dev/managegameservers
+sv_setsteamaccount "{{steam_server_token}}"
+{% endif %}
+rcon_password "{{csgo_server_rcon_password}}"
+sv_password "{{csgo_client_access_password}}" //Only set this if you intend to have a private server!
+sv_cheats 0 //This should always be set, so you know it's not on
+sv_lan {{one_for_local_zero_for_global}} //This should always be set, so you know it's not on
+
+// These files seems to be generated at start up.
+exec banned_user.cfg
+exec banned_ip.cfg

@@ -1,0 +1,17 @@
+services:
+  csgo:
+    image: steam_server:0.2.9
+    container_name: csgo-ds
+    volumes:
+      - type: bind
+        source: ${HOME}/Downloads/csgo_legacy
+        target: /data/steam/csgo_legacy
+      - type: bind
+        source: ${PWD}/csgo_scripts
+        target: /data/steam/csgo_git_repo/
+    network_mode: host
+    restart: unless-stopped
+    command: /data/steam/csgo_git_repo/csgo_scripts/private_run_csgo_server.sh
+
+
+
