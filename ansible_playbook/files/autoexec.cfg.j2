@@ -2,14 +2,10 @@
 
 // https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive/Dedicated_Servers#Linux_Scripts
 
-// Destination: /data/steam/csgo_app/csgo/cfg/autoexec.cfg
-
-
 log on //This is set to turn on logging! Don't put this in your server.cfg
 hostname "{{server_name}}"
 sv_tags "{{server_name}}"
 {% if steam_server_token != 'EMPTY' %}
-// token: https://steamcommunity.com/dev/managegameservers
 sv_setsteamaccount "{{steam_server_token}}"
 {% endif %}
 rcon_password "{{csgo_server_rcon_password}}"
