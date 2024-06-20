@@ -75,6 +75,7 @@
           update_cache: true
           package: ['filebeat']
       - name: Enable filebeat service, and not touch the state
+        become: yes
         ansible.builtin.service:
           name: filebeat
           enabled: yes

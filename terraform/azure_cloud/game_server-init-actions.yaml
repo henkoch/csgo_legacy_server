@@ -17,12 +17,25 @@ packages:
   - ansible
   - git
 
+disk_setup:
+  /dev/vdb:
+    table_type: 'gpt'
+    layout: True
+    overwrite: false
+fs_setup:
+  - label: data
+    device: /dev/vdb1
+    filesystem: ext4
+    overwrite: false
+mounts:
+  - [/dev/vdb1, /data, ext4, 'defaults,discard,nofail', '0', '2']
+
 # 
 runcmd:
-  - cd /home/ansible; git clone -b azure_intro https://github.com/henkoch/csgo_server
+  - cd /home/ansible; git clone -b azure_intro https://github.com/henkoch/csgo_legacy_server.git
   - sudo dmesg > dmesg.txt
   #- sudo mount /data
-  - cd csgo_server/ansible_playbook && ansible-playbook --extra-vars "csgo_client_access_password=${css_client_access_password}" --extra-vars "csgo_server_rcon_password=${csgo_server_rcon_password}" --extra-vars "one_for_local_zero_for_global=${one_for_local_zero_for_global}" --extra-vars "server_name=${csgo_server_name}" --extra-vars "steam_server_token=${steam_server_token}" -v steam_client.yaml
+  - cd csgo_legacy_server/ansible_playbook && ansible-playbook --extra-vars "csgo_client_access_password=${csgo_client_access_password}" --extra-vars "csgo_server_rcon_password=${csgo_server_rcon_password}" --extra-vars "one_for_local_zero_for_global=${one_for_local_zero_for_global}" --extra-vars "server_name=${csgo_server_name}" --extra-vars "steam_server_token=${steam_server_token}" -v steam_client.yaml
   - echo "0.3.0" > DONE.txt
   - cp /var/log/cloud-init-output.log /home/ansible
   - date >> DONE.txt

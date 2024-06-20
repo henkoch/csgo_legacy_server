@@ -1,7 +1,11 @@
 # Installing on Azure
 
 * cd ~/csgo_server/ansible_playbook/
-* ansible-playbook --extra-vars "csgo_client_access_password=csgo_client_access_password" --extra-vars "csgo_server_rcon_password=csgo_server_rcon_password" --extra-vars "one_for_local_zero_for_global=0" --extra-vars "server_name=cs_server_name" --extra-vars "steam_server_token=steam_server_token" -v steam_client.yaml
+* ansible-playbook --extra-vars "csgo_client_access_password=csgo_client_access_password" --extra-vars "csgo_server_rcon_password=csgo_server_rcon_password" --extra-vars "one_for_local_zero_for_global=0" --extra-vars "server_name=csgo_server_name" --extra-vars "steam_server_token=steam_server_token" -v steam_client.yaml
+
+
+* [](https://www.purevpn.com/port-forwarding/counter-strike-global-offensive)
+* [](https://www.reddit.com/r/GlobalOffensive/comments/1akvhuc/valve_have_disabled_community_servers_in_the/)
 
 ## Installation instructions
 
@@ -38,10 +42,9 @@
 * sudo mv /data.org/steam/ /data
 * sudo chown -R steam:steam /data/steam
 * sudo -i
-* su - steam
 * export LD_LIBRARY_PATH=/usr/lib/games/linux32
-* time /usr/lib/games/steam/steamcmd +force_install_dir ~/csgo_app/ +login STEAM_USER_NAME STEAM_PASSWORD +app_update 730 validate +quit
-* time /usr/lib/games/steam/steamcmd +force_install_dir ~/csgo_app/ +login STEAM_USER_NAME STEAM_PASSWORD +app_update 730 validate +quit
+* time /usr/lib/games/steam/steamcmd +force_install_dir /data/steam/csgo_legacy/ +login anonymous +app_update 740 validate +quit
+* time /usr/lib/games/steam/steamcmd +force_install_dir /data/steam/csgo_legacy/ +login anonymous +app_update 740 validate +quit
   * this time it will ask for the 'Steam Guard code:' the code will be e-mailed to the steam user e-mail address.
 
 ### Installing the telemetry server

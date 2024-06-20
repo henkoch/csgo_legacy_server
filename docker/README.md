@@ -12,7 +12,7 @@
 
 ### installation
 
-#### Error! App '740' state is 0x602 after update job.
+#### Error! App '740' state is 0x602 after update job
 
 user id was 1001 and storage owner id was 1000
 

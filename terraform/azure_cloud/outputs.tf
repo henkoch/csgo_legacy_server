@@ -6,7 +6,7 @@ output "game_ip" {
   value = azurerm_public_ip.csgo_public_ip.*.ip_address
   description = "The game server public IP"
 }
-output "telemetry_ip" {
-  value = azurerm_public_ip.telemetry_public_ip.*.ip_address
-  description = "The public IP address of the telemetry server"
-}
+#output "telemetry_ip" {
+#  value = azurerm_public_ip.telemetry_public_ip.*.ip_address
+#  description = "The public IP address of the telemetry server"
+#}
