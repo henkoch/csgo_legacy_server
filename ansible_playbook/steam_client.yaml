@@ -109,7 +109,7 @@
     become: yes
     become_user: steam
     git:
-      repo: 'https://github.com/henkoch/csgo_server.git'
+      repo: 'https://github.com/henkoch/csgo_legacy_server.git'
       dest: /data/steam/csgo_git_repo
       update: yes
       version: azure_intro

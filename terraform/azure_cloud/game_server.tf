@@ -67,7 +67,7 @@ resource "azurerm_network_security_group" "csgo_nsg" {
     access                     = "Allow"
     protocol                   = "Udp"
     source_port_range          = "*"
-    destination_port_range     = "3478,4379,4380,27014,27016-27030"
+    destination_port_ranges     = ["3478","4379","4380","27014","27016-27030"]
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }

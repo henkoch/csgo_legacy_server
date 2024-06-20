@@ -18,17 +18,17 @@ packages:
   - git
 
 disk_setup:
-  /dev/vdb:
+  /dev/sdc:
     table_type: 'gpt'
     layout: True
     overwrite: false
 fs_setup:
   - label: data
-    device: /dev/vdb1
+    device: /dev/sdc1
     filesystem: ext4
     overwrite: false
 mounts:
-  - [/dev/vdb1, /data, ext4, 'defaults,discard,nofail', '0', '2']
+  - [/dev/sdc1, /data, ext4, 'defaults,discard,nofail', '0', '2']
 
 # 
 runcmd:
