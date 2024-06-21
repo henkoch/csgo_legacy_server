@@ -2,7 +2,7 @@
 
 CSGO_BASE_DIR="/data/steam/csgo_legacy"
 #CSGO_SCRIPTS_DIR="/data/steam/csgo_git_repo/csgo_scripts"
-CSGO_SCRIPTS_DIR="/data/steam/csgo_git_repo"
+CSGO_SCRIPTS_DIR="/data/steam/csgo_git_repo/docker/csgo_scripts"
 
 export LD_LIBRARY_PATH="${CSGO_BASE_DIR}:${CSGO_BASE_DIR}/bin:/data/steam/.local/share/Steam/steamcmd/linux32"
 
@@ -66,4 +66,4 @@ DANGER_ZONE="-maxplayers 12 -nobots  +game_type 6 +game_mode 0 +map dz_blacksite
 # game_type 6; game_mode 0; changelevel dz_blacksite; sv_dz_team_count 2; sv_dz_jointeam_allowed 1; sv_dz_autojointeam 0; sv_dz_player_spawn_armor 1
 
 # set to casual mode
-${CSGO_BASE_DIR}/srcds_linux -game csgo -usercon -uselogdir -condebug -net_port_try 1 -tickrate 128 ${HOSTAGE_RESCUE}
+${CSGO_BASE_DIR}/srcds_linux +sv_setsteamaccount XXX -game csgo -usercon -uselogdir -condebug -net_port_try 1 -tickrate 128 ${HOSTAGE_RESCUE}

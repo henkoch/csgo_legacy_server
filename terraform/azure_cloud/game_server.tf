@@ -67,6 +67,7 @@ resource "azurerm_network_security_group" "csgo_nsg" {
     access                     = "Allow"
     protocol                   = "Udp"
     source_port_range          = "*"
+    # https://support.hashicorp.com/hc/en-us/articles/360042248153-How-to-configure-destination-port-ranges-for-Azure-resource-Manager-via-Terraform
     destination_port_ranges     = ["3478","4379","4380","27014","27016-27030"]
     source_address_prefix      = "*"
     destination_address_prefix = "*"

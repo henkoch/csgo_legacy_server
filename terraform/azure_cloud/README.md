@@ -26,26 +26,25 @@
 * click 'All resources' in top left burger menu
 * click 'csgo-public-ip'
 * ssh -i private_admin_id_rsa ubuntu@IP_ADDRESS
+* sudo fdisk /dev/sdc
+  * create a single partition
+* sudo mkfs.ext4 /dev/sdc1
 * sudo mv /data /data.org
-* find the mount script for the file share
-  * browsing portal.azure.com  storageaccount -> File shares
-  * click the fileshare
-  * click 'connect'
-  * click 'Linux' tab
-  * click the 'Show Script' button
-  * vi mount_data_script.sh
-    * change `/mnt/cssmbshare` to `/data`
-      * %s/\/mnt\/cssmbshare/\/data/g
-  * bash mount_data_script.sh
+* sudo mkdir /data
+* sudo mount /dev/sdc1 /data
 * verify the /data is mounted
   * df -h | grep data
 * sudo mv /data.org/steam/ /data
 * sudo chown -R steam:steam /data/steam
 * sudo -i
+* su - steam
 * export LD_LIBRARY_PATH=/usr/lib/games/linux32
 * time /usr/lib/games/steam/steamcmd +force_install_dir /data/steam/csgo_legacy/ +login anonymous +app_update 740 validate +quit
 * time /usr/lib/games/steam/steamcmd +force_install_dir /data/steam/csgo_legacy/ +login anonymous +app_update 740 validate +quit
   * this time it will ask for the 'Steam Guard code:' the code will be e-mailed to the steam user e-mail address.
+* vi ~/csgo_git_repo/docker/csgo_scripts/private_autoexec.cfg
+  * copy it from your local file
+* ~/csgo_git_repo/docker/csgo_scripts/run_server.sh
 
 ### Installing the telemetry server
 
@@ -67,6 +66,7 @@
 
 ## TODO
 
+* why isn't the /dev/sdc available for formating when the cloud-init is running? can I somehow wait for it?
 * copy the filebeat file to etc: sudo cp csgo_server/ansible_playbook/files/filebeat.docker.yml /etc/filebeat/filebeat.yml
 * figure out why the /data dir hasn't been mounted
 * find out what requires the VM to be rebooted
@@ -150,4 +150,76 @@ Error! App '730' state is 0x202 after update job.
 real	0m6.540s
 user	0m1.013s
 sys	0m1.060s
+```
+
+#### smb thingy
+
+
+* find the mount script for the file share
+  * browsing portal.azure.com  storageaccount -> File shares
+  * click the fileshare
+  * click 'connect'
+  * click 'Linux' tab
+  * click the 'Show Script' button
+  * vi mount_data_script.sh
+    * change `/mnt/cssmbshare` to `/data`
+      * %s/\/mnt\/cssmbshare/\/data/g
+  * bash mount_data_script.sh
+
+
+####
+
+```text
+Initializing Steam libraries for secure Internet server
+[S_API] SteamAPI_Init(): Loaded local 'steamclient.so' OK.
+CAppInfoCacheReadFromDiskThread took 51 milliseconds to initialize
+Setting breakpad minidump AppID = 730
+dlopen failed trying to load:
+/data/steam/.steam/sdk32/steamclient.so
+with error:
+/data/steam/.steam/sdk32/steamclient.so: cannot open shared object file: No such file or directory
+Looking up breakpad interfaces from steamclient
+Calling BreakpadMiniDumpSystemInit
+Setting breakpad minidump AppID = 740
+****************************************************
+*                                                  *
+*  No Steam account token was specified.           *
+*  Logging into anonymous game server account.     *
+*  Connections will be restricted to LAN only.     *
+*                                                  *
+*  To create a game server account go to           *
+*  http://steamcommunity.com/dev/managegameservers *
+*                                                  *
+****************************************************
+Initialized low level socket/threading support.
+SDR_LISTEN_PORT is set, but not SDR_CERT/SDR_PRIVATE_KEY.
+Set SteamNetworkingSockets P2P_STUN_ServerList to '' as per SteamNetworkingSocketsSerialized
+SteamDatagramServer_Init succeeded
+Connection to Steam servers successful.
+   Public IP is 13.74.189.156.
+Assigned anonymous gameserver Steam ID [A:1:4144416799:29646].
+Gameserver logged on to Steam, assigned identity steamid:90199325292283935
+Set SteamNetworkingSockets P2P_STUN_ServerList to '162.254.196.84:3478' as per SteamNetworkingSocketsSerialized
+SteamNetworkingSockets lock held for 17.4ms.  (Performance warning.)  SteamServersConnected_t
+This is usually a symptom of a general performance problem such as thread starvation.
+VAC secure mode is activated.
+GC Connection established for server version 1575, instance idx 1
+MasterRequestRestart
+Your server needs to be restarted in order to receive the latest update.
+MasterRequestRestart
+Your server needs to be restarted in order to receive the latest update.
+```
+
+```text
+status
+hostname: Counter-Strike: Global Offensive
+version : 1.38.8.1/13881 1575/8853 secure  [A:1:4144416799:29646] 
+udp/ip  : 10.0.1.4:27015  (public ip: 13.74.189.156)
+os      :  Linux
+type    :  community dedicated
+map     : cs_office
+players : 0 humans, 0 bots (20/0 max) (hibernating)
+
+# userid name uniqueid connected ping loss state rate adr
+#end
 ```
