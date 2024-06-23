@@ -8,10 +8,10 @@ services:
         target: /data/steam/csgo_legacy
       - type: bind
         source: ${PWD}/csgo_scripts
-        target: /data/steam/csgo_git_repo/
+        target: /data/steam/csgo_git_repo/docker/csgo_scripts
     network_mode: host
     restart: unless-stopped
-    command: /data/steam/csgo_git_repo/csgo_scripts/private_run_csgo_server.sh
+    command: /data/steam/csgo_git_repo/docker/csgo_scripts/run_server.sh
 
 
 

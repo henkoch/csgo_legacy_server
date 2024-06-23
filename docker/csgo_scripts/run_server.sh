@@ -2,7 +2,7 @@
 
 CSGO_BASE_DIR="/data/steam/csgo_legacy"
 #CSGO_SCRIPTS_DIR="/data/steam/csgo_git_repo/csgo_scripts"
-CSGO_SCRIPTS_DIR="/data/steam/csgo_git_repo"
+CSGO_SCRIPTS_DIR="/data/steam/csgo_git_repo/docker/csgo_scripts"
 
 export LD_LIBRARY_PATH="${CSGO_BASE_DIR}:${CSGO_BASE_DIR}/bin:/data/steam/.local/share/Steam/steamcmd/linux32"
 
