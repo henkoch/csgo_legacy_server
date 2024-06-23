@@ -66,4 +66,4 @@ DANGER_ZONE="-maxplayers 12 -nobots  +game_type 6 +game_mode 0 +map dz_blacksite
 # game_type 6; game_mode 0; changelevel dz_blacksite; sv_dz_team_count 2; sv_dz_jointeam_allowed 1; sv_dz_autojointeam 0; sv_dz_player_spawn_armor 1
 
 # set to casual mode
-${CSGO_BASE_DIR}/srcds_linux +sv_setsteamaccount XXX -game csgo -usercon -uselogdir -condebug -net_port_try 1 -tickrate 128 ${HOSTAGE_RESCUE}
+${CSGO_BASE_DIR}/srcds_linux -game csgo -usercon -uselogdir -condebug -net_port_try 1 -tickrate 128 ${HOSTAGE_RESCUE}

@@ -67,8 +67,9 @@ resource "azurerm_network_security_group" "csgo_nsg" {
     access                     = "Allow"
     protocol                   = "Udp"
     source_port_range          = "*"
+    # https://forums.alliedmods.net/showthread.php?p=2217316
     # https://support.hashicorp.com/hc/en-us/articles/360042248153-How-to-configure-destination-port-ranges-for-Azure-resource-Manager-via-Terraform
-    destination_port_ranges     = ["3478","4379","4380","27014","27016-27030"]
+    destination_port_ranges     = ["3478","4379","4380","26900-26901","27005","27014","27016-27030"]
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
@@ -107,7 +108,8 @@ resource "azurerm_linux_virtual_machine" "csgo_vm" {
   #  D2a v4 or D4a v4
   # az vm list-sizes --location "northeurope"
   # az vm list-skus --location northeurope --size Standard_B --all --output table
-  size = "Standard_B1s"
+  #size = "Standard_B1s"
+  size = "Standard_D2_v4"
 
   # Provide the the cloud-init data.
   custom_data = data.template_cloudinit_config.game_commoninit.rendered
