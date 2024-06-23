@@ -8,6 +8,8 @@ Provide the tools and documentation to deploy a private CS:GO server.
 
 In Azure and docker.
 
+NOTE: it seems that you can't connect to a CS:GO public server, possibly only via LAN.
+
 ### Vocabulary
 
 * CLI - command line interface.
